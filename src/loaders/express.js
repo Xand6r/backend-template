@@ -1,9 +1,11 @@
-var path = require("path");
+const path = require("path");
 const cors = require('cors');
-var logger = require("morgan");
-var express = require("express");
-var createError = require("http-errors");
-var cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const express = require("express");
+const createError = require("http-errors");
+const cookieParser = require("cookie-parser");
+const Routes = require('../api');
+
 
 module.exports = async ({ app }) => {
     // view engine setup
@@ -16,6 +18,7 @@ module.exports = async ({ app }) => {
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, "public")));
     app.use(cors());
+    app.use(Routes());
 
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {

@@ -1,5 +1,6 @@
 const { Container } = require("typedi");
 const getModels = require("../models");
+const getServices = require("../services");
 const LoggerInstance = require("./logger");
 
 const dependencyInjector = async () => {
@@ -10,6 +11,14 @@ const dependencyInjector = async () => {
         Container.set(m.name, m.model);
     });
     LoggerInstance.info("✔️   All Mongo DB Models loaded!");
+
+    const services = getServices();
+    LoggerInstance.info("✌️   Loading Service Instances");
+    services.forEach((s) => {
+        LoggerInstance.info("   --  ✔️  Loading Service: %s", s.name);
+        const serviceInstance = new s.service();
+        Container.set(s.name, serviceInstance);
+    });
 
     Container.set("logger", LoggerInstance);
     LoggerInstance.info("✔️   Logger Injected");

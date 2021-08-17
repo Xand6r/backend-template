@@ -1,7 +1,7 @@
-import { Router } from "express";
-import statusRoute from "./routes/status";
+const { Router } = require("express");
+const  statusRoute = require("./routes/status");
 
-export default () => {
+const Routes = () => {
     const app = Router();
     //initialie thee required routes
     statusRoute(app);
@@ -9,3 +9,5 @@ export default () => {
     // return an instance of our routes
     return app;
 };
+
+module.exports = Routes;
