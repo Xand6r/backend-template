@@ -10,8 +10,13 @@ const config = {
 
     /**
      * Your favourite port
-    */
-   port: parseInt(process.env.PORT, 10)
+     */
+    port: parseInt(process.env.PORT, 10),
+
+    /**
+     * Your DB url
+     */
+    databaseUrl: process.env.DATABASE_URL,
 };
 
 module.exports = config;

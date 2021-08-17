@@ -12,7 +12,7 @@ async function startServer() {
             console.log(err);
             return;
         }
-        console.log(`🔥 server is ready on port ${config.port} 🔥`)
+        console.log(`✅ server is ready on port ${config.port} ✅`)
     });
 };
 

@@ -10,7 +10,6 @@ const dependencyInjector = async () => {
         LoggerInstance.info("   --  ✔️  Loading Mongo DB Model: %s", m.name);
         Container.set(m.name, m.model);
     });
-    LoggerInstance.info("✔️   All Mongo DB Models loaded!");
 
     const services = getServices();
     LoggerInstance.info("✌️   Loading Service Instances");

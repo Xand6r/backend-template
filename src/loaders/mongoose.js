@@ -1,7 +1,17 @@
-import mongoose from "mongoose";
-export default async () => {
-    const connection = await mongoose.connect(process.env.DATABASE_URL, {
+const mongoose = require("mongoose");
+const config = require("../config");
+const LoggerInstance = require("./logger");
+
+
+const mongooseLoader =  () => {
+    return mongoose.connect(config.databaseUrl, {
         useNewUrlParser: true,
-    });
-    return connection.connection.db;
+        useUnifiedTopology: true
+    }).then((connection) => {
+        return connection.connection.db;
+    }).catch((err) => {
+        LoggerInstance.error(`🔥${err.message}🔥`);
+    })
 };
+
+module.exports = mongooseLoader;
